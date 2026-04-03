@@ -1,16 +1,14 @@
-// ==========================================
-// 1. Mobile Menu Toggle (3-Line Menu)
-// ==========================================
+
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 const links = document.querySelectorAll('.nav-links li a');
 
 if (hamburger && navLinks) {
-    // Hamburger ഐക്കണിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ മെനു വരാൻ
+    
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         
-        // ഐക്കൺ മാറ്റാൻ (Bars to X)
+        
         const icon = hamburger.querySelector('i');
         if(navLinks.classList.contains('active')){
             icon.classList.remove('fa-bars');
@@ -21,7 +19,7 @@ if (hamburger && navLinks) {
         }
     });
 
-    // ലിങ്കിൽ ക്ലിക്ക് ചെയ്താൽ മെനു തനിയെ അടയാൻ
+    
     links.forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
@@ -32,9 +30,7 @@ if (hamburger && navLinks) {
     });
 }
 
-// ==========================================
-// 2. Web3Forms Submission & Success Page
-// ==========================================
+
 const contactForm = document.getElementById('contactForm');
 const result = document.getElementById('formResult');
 const submitBtn = document.getElementById('submitBtn');
@@ -63,7 +59,7 @@ if (contactForm) {
         })
         .then(async (response) => {
             if (response.status == 200) {
-                // സക്സസ് ആയാൽ നമ്മുടെ സ്വന്തം സക്സസ് പേജിലേക്ക് പോകും
+              
                 window.location.href = "success.html";
             } else {
                 let json = await response.json();
