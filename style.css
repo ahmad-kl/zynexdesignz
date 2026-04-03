@@ -1,4 +1,4 @@
-/* General Setup */
+
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +7,8 @@
 }
 
 body {
-    background-color: #FDFBF7; /* Poster's off-white cream background */
-    color: #2D2D2D; /* Dark grey for text */
+    background-color: #FDFBF7; 
+    color: #2D2D2D; 
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -17,7 +17,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Navbar */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -60,7 +60,7 @@ html {
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: #C19A6B; /* Soft gold/brown accent from poster */
+    color: #C19A6B; 
 }
 
 .hamburger {
@@ -69,7 +69,7 @@ html {
     cursor: pointer;
 }
 
-/* Hero Section */
+
 .hero {
     height: 80vh;
     display: flex;
@@ -111,9 +111,7 @@ html {
     background-color: #C19A6B;
 }
 
-/* ==================================
-   ABOUT PAGE & TEAM SECTION
-   ================================== */
+
 .page-header {
     background-color: #1A1A1A;
     color: #fff;
@@ -196,9 +194,7 @@ html {
     letter-spacing: 1px;
 }
 
-/* ==================================
-   SERVICES SECTION
-   ================================== */
+
 .services {
     padding: 80px 20px;
     text-align: center;
@@ -264,7 +260,7 @@ html {
     line-height: 1.6;
 }
 
-/* Features Highlights */
+
 .features {
     display: flex;
     justify-content: center;
@@ -291,9 +287,7 @@ html {
     color: #C19A6B;
 }
 
-/* ==================================
-   CONTACT PAGE STYLING
-   ================================== */
+
 .contact-page-section {
     padding: 80px 20px;
     background-color: #FDFBF7;
@@ -310,7 +304,7 @@ html {
     border: 1px solid #EAEAEA;
 }
 
-/* Left Side - Info */
+
 .contact-details {
     flex: 1;
     background-color: #1A1A1A;
@@ -353,7 +347,7 @@ html {
     font-size: 14px;
 }
 
-/* Right Side - Form (അപ്‌ഡേറ്റ് ചെയ്ത ഭാഗം) */
+
 .contact-form-box {
     flex: 1.5;
     padding: 50px 40px;
@@ -378,7 +372,6 @@ html {
     color: #333;
 }
 
-/* input, textarea, select എന്നിവയ്ക്ക് ഒരേ ഡിസൈൻ */
 .form input, .form textarea, .form select {
     padding: 12px 15px;
     border: 1px solid #ddd;
@@ -391,7 +384,7 @@ html {
     width: 100%;
 }
 
-/* ഡ്രോപ്പ്-ഡൗൺ ബോക്സിന് മാത്രം വേണ്ട മാറ്റങ്ങൾ */
+
 .form select {
     cursor: pointer;
     appearance: none;
@@ -418,9 +411,7 @@ html {
     gap: 10px;
 }
 
-/* ==================================
-   MODERN FOOTER STYLING
-   ================================== */
+
 .modern-footer {
     background-color: #111111;
     color: #EAEAEA;
@@ -570,9 +561,7 @@ html {
     font-size: 13px;
 }
 
-/* ==================================
-   RESPONSIVE MOBILE STYLING 
-   ================================== */
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -637,12 +626,12 @@ html {
         padding: 30px 20px;
     }
 }
-/* --- Contact Information Styling --- */
+
 .info-item-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.03); /* Dark background theme-ന് അനുയോജ്യം */
+    background: rgba(255, 255, 255, 0.03); 
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -662,7 +651,7 @@ html {
 
 .info-main i {
     font-size: 20px;
-    color: #C19A6B; /* നിങ്ങളുടെ ഗോൾഡൻ/ബ്രൗൺ തീം കളർ */
+    color: #C19A6B; 
 }
 
 .info-main h4 {
@@ -676,7 +665,6 @@ html {
     color: #aaa;
 }
 
-/* വലതുവശത്തെ ലിങ്ക് ഐക്കൺ */
 .direct-link-icon {
     width: 35px;
     height: 35px;
@@ -696,7 +684,7 @@ html {
     background: #fff;
 }
 
-/* --- Horizontal Scroll Fix (Services & Team Sections) --- */
+
 .services-grid, .team-grid {
     display: flex !important;
     flex-direction: row !important;
@@ -705,24 +693,22 @@ html {
     overflow-x: auto;
     padding: 20px 0;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; /* iOS-ൽ സ്മൂത്ത് സ്ക്രോളിംഗിന് */
+    -webkit-overflow-scrolling: touch; 
 }
 
-/* സ്ക്രോൾ ബാർ ഹൈഡ് ചെയ്യാൻ (വൃത്തിയുള്ള ലുക്കിന്) */
+
 .services-grid::-webkit-scrollbar, .team-grid::-webkit-scrollbar {
     display: none;
 }
 
 .service-card, .team-card {
-    flex: 0 0 300px; /* കാർഡുകളുടെ വീതി കൃത്യമായി നിശ്ചയിക്കുന്നു */
+    flex: 0 0 300px; 
     scroll-snap-align: center;
 }
 
-/* മൊബൈൽ ഡിസൈൻ മാറ്റങ്ങൾ */
 @media (max-width: 768px) {
     .service-card {
-        flex: 0 0 85%; /* മൊബൈലിൽ കാർഡ് കുറച്ചുകൂടി വലുതായി കാണാൻ */
-    }
+        flex: 0 0 85%; 
     .team-card {
         flex: 0 0 75%;
     }
