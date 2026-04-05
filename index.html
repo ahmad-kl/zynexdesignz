@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zynex Designing Hub</title>
-    
     <link rel="icon" type="image/png" href="favicon.png">
-
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -19,7 +17,7 @@
             <p>DESIGNING HUB</p>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
             <li><a href="about.html">About Us</a></li> 
             <li><a href="#services">Services</a></li>
             <li><a href="contact.html">Contact</a></li> 
@@ -30,10 +28,20 @@
     </nav>
 
     <section id="home" class="hero">
+        
+        <div class="floating-icons">
+            <i class="fas fa-pen-nib bg-icon icon-1"></i>
+            <i class="fas fa-palette bg-icon icon-2"></i>
+            <i class="fas fa-lightbulb bg-icon icon-3"></i>           
+            <i class="fas fa-cube bg-icon icon-5"></i>
+            <i class="fas fa-compass bg-icon icon-6"></i>
+            <i class="fas fa-lightbulb bg-icon icon-8"></i>
+        </div>
+
         <div class="hero-content">
-            <h4>🚀 Introducing</h4>
+            <span class="intro-tag">🚀 Introducing</span>
             <h2>Zynex Designing Hub!</h2>
-            <p>Your one-stop solution for all your creative needs.</p>
+            <p>Your one-stop solution for all your creative needs. Premium Graphic Design & Web Solutions.</p>
             <a href="contact.html" class="btn">Get Started</a>
         </div>
     </section>
@@ -47,33 +55,25 @@
         
         <div class="team-grid">
             <div class="team-card">
-                <div class="team-img">
-                    <img src="nabeel.webp" alt="Member 1"> 
-                </div>
+                <div class="team-img"><img src="nabeel.webp" alt="Nabeel"></div>
                 <h3>Muhammed Nabeel</h3>
-                <p class="team-role">Poster designer</p>
+                <p class="team-role">Poster Designer</p>
             </div>
 
             <div class="team-card">
-                <div class="team-img">
-                    <img src="salam.webp" alt="Member 2">
-                </div>
+                <div class="team-img"><img src="salam.webp" alt="Salam"></div>
                 <h3>Salam</h3>
-                <p class="team-role">Logo Designer</p>
+                <p class="team-role">Video Editor</p>
             </div>
 
             <div class="team-card">
-                <div class="team-img">
-                    <img src="ahmad.webp" alt="Member 3">
-                </div>
+                <div class="team-img"><img src="ahmad.webp" alt="Ahmad"></div>
                 <h3>Ahmad</h3>
                 <p class="team-role">Web Developer</p>
             </div>
 
             <div class="team-card">
-                <div class="team-img">
-                    <img src="ajeer.webp" alt="Member 4">
-                </div>
+                <div class="team-img"><img src="ajeer.webp" alt="Ajeer"></div>
                 <h3>Ajeer</h3>
                 <p class="team-role">Social Media Manager</p>
             </div>
@@ -89,12 +89,12 @@
             <div class="service-card">
                 <i class="fas fa-palette"></i>
                 <h3>Logo Designing</h3>
-                <p>Unique and memorable logos to define your brand identity.</p>
+                <p>Unique and memorable logos to define your brand identity perfectly.</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-bullhorn"></i>
                 <h3>Posters</h3>
-                <p>Eye-catching posters for your events and promotions.</p>
+                <p>Eye-catching posters for your events, campaigns and promotions.</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-share-alt"></i>
@@ -104,27 +104,12 @@
             <div class="service-card">
                 <i class="fas fa-laptop-code"></i>
                 <h3>Website Design</h3>
-                <p>Beautiful, responsive websites tailored to your business.</p>
+                <p>Beautiful, responsive, and fast websites tailored to your business.</p>
             </div>
         </div>
     </section>
 
-    <section class="features">
-        <div class="feature-box">
-            <i class="fas fa-pencil-ruler"></i>
-            <span>Professional Designs</span>
-        </div>
-        <div class="feature-box">
-            <i class="fas fa-hand-holding-usd"></i>
-            <span>Budget Friendly</span>
-        </div>
-        <div class="feature-box">
-            <i class="fas fa-bolt"></i>
-            <span>Fast Delivery</span>
-        </div>
-    </section>
-
-    <footer id="contact" class="modern-footer">
+    <footer class="modern-footer">
         <div class="footer-content">
             <div class="footer-col brand-col">
                 <h2 class="footer-logo">ZYNEX <span>HUB</span></h2>
@@ -150,8 +135,6 @@
                     <a href="https://wa.me/917510173643" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i></a>
                     <a href="mailto:zynexdesignz@gmail.com" class="social-btn"><i class="fas fa-envelope"></i></a>
                 </div>
-                
-                <a href="contact.html" class="btn glow-btn">Contact Us <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
 
