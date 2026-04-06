@@ -7,7 +7,7 @@
 
 body {
     background-color: #FDFBF7; 
-    /* ആ മനോഹരമായ ഒഴുകുന്ന കളർ ബാക്ക്ഗ്രൗണ്ട് (Mesh Gradient) */
+    
     background-image: 
         radial-gradient(at 0% 0%, rgba(195, 228, 232, 0.6) 0px, transparent 50%),
         radial-gradient(at 80% 0%, rgba(235, 218, 235, 0.6) 0px, transparent 50%),
@@ -32,7 +32,6 @@ html {
     align-items: center;
     padding: 20px 50px;
     
-    /* ഗ്ലാസ്സ് പോലെയുള്ള എഫക്റ്റ് (Glassmorphism) */
     background: rgba(253, 251, 247, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -82,9 +81,8 @@ html {
     cursor: pointer;
 }
 
-/* ==================================
-   HERO SECTION & FLOATING ICONS
-   ================================== */
+
+    
 .hero {
     height: 80vh;
     display: flex;
@@ -92,13 +90,13 @@ html {
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    position: relative; /* ഐക്കണുകൾക്ക് വേണ്ടി ചേർത്തത് */
-    overflow: hidden; /* ഐക്കണുകൾ പുറത്തേക്ക് പോകാതിരിക്കാൻ */
+    position: relative; 
+    overflow: hidden; 
 }
 
 .hero-content {
     position: relative;
-    z-index: 10; /* ടെക്സ്റ്റും ബട്ടണും ഐക്കണിന് മുകളിൽ വരാൻ */
+    z-index: 10; 
 }
 
 .hero-content h4 {
@@ -133,16 +131,15 @@ html {
     background-color: #C19A6B;
 }
 
-/* --- പുതിയ ബാക്ക്ഗ്രൗണ്ട് ഐക്കൺ ഡിസൈൻ --- */
+
 .bg-icon {
     position: absolute;
-    color: rgba(193, 154, 107, 0.08); /* വളരെ മങ്ങിയ ഗോൾഡ് നിറം */
-    font-size: 150px; /* ഐക്കണിന്റെ വലിപ്പം */
+    color: rgba(193, 154, 107, 0.08); 
+    font-size: 150px; 
     z-index: 1;
-    pointer-events: none; /* ലിങ്കുകളിൽ തടസ്സം വരാതിരിക്കാൻ */
+    pointer-events: none; 
 }
 
-/* ഓരോ ഐക്കണും വെക്കേണ്ട കൃത്യമായ സ്ഥലങ്ങളും അനിമേഷൻ ഡിലേയും */
 .icon-1 { top: 15%; left: 8%; transform: rotate(-10deg); animation: float 6s infinite ease-in-out; }
 .icon-2 { bottom: 20%; right: 10%; font-size: 180px !important; animation: float 6s infinite 1s ease-in-out; }
 .icon-3 { top: 60%; left: 15%; transform: rotate(5deg); animation: float 6s infinite 2s ease-in-out; }
@@ -152,13 +149,11 @@ html {
 .icon-7 { top: 40%; left: 2%; font-size: 200px !important; opacity: 0.5; animation: float 6s infinite 4s ease-in-out; }
 .icon-8 { top: 55%; right: -3%; font-size: 220px !important; opacity: 0.3; animation: float 6s infinite 2.5s ease-in-out; }
 
-/* ഒഴുകുന്ന അനിമേഷൻ എഫക്റ്റ് */
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
     50% { transform: translateY(-10px) rotate(3deg); }
 }
 
-/* ================================== */
 
 .page-header {
     background-color: #1A1A1A;
@@ -675,7 +670,6 @@ html {
         padding: 30px 20px;
     }
 
-    /* മൊബൈലിൽ ഐക്കണുകളുടെ വലിപ്പം കുറയ്ക്കാൻ */
     .bg-icon { font-size: 80px !important; }
     .icon-7, .icon-8 { display: none; } /* മൊബൈലിൽ തിരക്ക് ഒഴിവാക്കാൻ ചില വലിയ ഐക്കണുകൾ ഹൈഡ് ചെയ്യുന്നു */
 }
