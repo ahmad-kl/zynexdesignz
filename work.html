@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work - ZYNEX DESIGNZ Creative Production Studio</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1ede8; 
+            color: #1c1c1c;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Navigation Header --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 40px;
+            background: rgba(241, 237, 232, 0.85);
+            backdrop-filter: blur(10px); z-index: 1000;
+            animation: slideDown 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-100%); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo { width: 42px; height: 42px; background: #ffffff; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .nav-container {
+            display: flex; align-items: center;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(5px);
+            padding: 10px 25px; border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            animation: navGlow 3s ease-in-out infinite;
+        }
+        @keyframes navGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(50, 143, 97, 0.1); }
+            50% { box-shadow: 0 0 20px rgba(50, 143, 97, 0.2); }
+        }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links li { position: relative; }
+        .nav-links li a {
+            text-decoration: none; color: #555; font-size: 0.75rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            transition: color 0.3s ease; position: relative;
+        }
+        .nav-links li a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background-color: #328f61; transition: width 0.3s ease;
+        }
+        .nav-links li a:hover { color: #1c1c1c; }
+        .nav-links li a:hover::after { width: 100%; }
+
+        .cta-btn {
+            background-color: #328f61; color: white; padding: 6px 16px 6px 6px;
+            border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.75rem;
+            display: flex; align-items: center; gap: 10px; transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .cta-btn:hover { background-color: #26734d; transform: scale(1.05); }
+        .eye-wrapper { width: 28px; height: 28px; background: #c4e6d6; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid rgba(255,255,255,0.2); }
+        .eye { width: 20px; height: 20px; background: white; border-radius: 50%; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .pupil { width: 10px; height: 10px; background: #1c1c1c; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        .hamburger { display: none; width: 28px; height: 20px; flex-direction: column; justify-content: space-between; cursor: pointer; z-index: 1001; position: relative; }
+        .hamburger span { display: block; width: 100%; height: 2.5px; background-color: #1c1c1c; border-radius: 2px; transition: all 0.3s ease-in-out; transform-origin: center; }
+        .hamburger.active span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+        .menu-overlay.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu { position: fixed; bottom: 0; left: 0; width: 100%; height: 70vh; background: rgba(28, 28, 28, 0.98); backdrop-filter: blur(15px); border-top-left-radius: 25px; border-top-right-radius: 25px; z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); padding: 40px 20px 80px; }
+        .mobile-menu.active { transform: translateY(0); }
+        .mobile-nav-links { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .mobile-nav-links li a { text-decoration: none; color: #ecebea; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s ease; }
+        .mobile-nav-links li a:hover { color: #46b284; }
+        .mobile-cta-btn { background-color: #46b284; color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; margin-top: 10px; transition: transform 0.2s ease, background 0.3s ease; }
+        .mobile-cta-btn:hover { background-color: #3a926a; transform: scale(1.05); }
+
+
+        /* --- WORK HERO SECTION --- */
+        #work-hero {
+            position: relative;
+            background-color: #f1ede8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 160px 20px 60px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .work-bg-word {
+            position: absolute;
+            font-family: 'Anton', sans-serif;
+            color: #1c1c1c;
+            opacity: 0.04;
+            font-size: clamp(20rem, 40vw, 35rem);
+            line-height: 0.85;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+            will-change: transform;
+        }
+        .work-bg-word:nth-child(1) { top: -8%; left: -10%; }
+        .work-bg-word:nth-child(2) { top: 30%; right: -5%; }
+        .work-bg-word:nth-child(3) { bottom: 10%; left: -15%; }
+        .work-bg-word:nth-child(4) { bottom: -15%; right: -5%; }
+
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero-subtitle {
+            font-size: 0.9rem; letter-spacing: 4px; color: #328f61;
+            text-transform: uppercase; font-weight: 700; margin-bottom: 15px; display: inline-block;
+        }
+        .hero-subtitle i { font-size: 0.8rem; margin-right: 8px; }
+        .hero-heading {
+            font-family: 'Anton', sans-serif; font-size: clamp(4rem, 12vw, 7rem);
+            line-height: 0.95; letter-spacing: 1px; color: #1c1c1c; margin-bottom: 25px;
+        }
+        .hero-heading .highlight-green { color: #328f61; }
+        .hero-desc {
+            max-width: 650px; margin: 0 auto; color: #666; font-size: 1.1rem; line-height: 1.6; font-weight: 400;
+        }
+
+
+        /* --- WORK & FILTER GRID SECTION (Removed List View) --- */
+        #work-grid-section {
+            background-color: #f1ede8;
+            padding: 40px 20px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-pill {
+            background-color: #ebe6df;
+            color: #1c1c1c;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .filter-pill.active {
+            background-color: #1c1c1c;
+            color: #fff;
+        }
+        .filter-pill:hover:not(.active) {
+            background-color: #ddd6cd;
+        }
+
+        .filter-line {
+            width: 100%;
+            height: 1px;
+            background-color: #ddd6cd;
+            margin-bottom: 40px;
+        }
+
+        /* Regular Small Grid Cards */
+        .masonry-grid {
+            column-count: 4;
+            column-gap: 20px;
+        }
+        .grid-item {
+            position: relative;
+            break-inside: avoid;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: block;
+            
+            /* Transparent card */
+            background: transparent;
+            border: 1px solid #d5cdc2;
+            padding: 30px 20px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .grid-item.hidden { display: none; }
+
+        /* Hover effect (Green Border) */
+        .grid-item:hover {
+            border-color: #328f61;
+            transform: translateY(-3px);
+        }
+
+        .grid-item h4 {
+            font-family: 'Anton', sans-serif;
+            color: #1c1c1c;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .grid-item p {
+            color: #777;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        /* --- CTA SECTION --- */
+        #cta-section {
+            background-color: #f1ede8;
+            padding: 60px 20px 100px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+        .cta-heading {
+            font-family: 'Anton', sans-serif; font-size: clamp(4rem, 10vw, 7rem);
+            line-height: 0.95; color: #1c1c1c; letter-spacing: 2px; margin-bottom: 20px;
+        }
+        .cta-heading .highlight-green { color: #328f61; display: inline-block; }
+        .cta-desc {
+            max-width: 650px; margin: 0 auto 40px; color: #666; font-size: 1.05rem; line-height: 1.6; font-weight: 400;
+        }
+        .cta-buttons-row {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+        }
+        .cta-btn-dark {
+            background-color: #1c1c1c; color: #fff; padding: 14px 32px; border-radius: 50px;
+            text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 1px; display: flex; align-items: center; gap: 10px; transition: background 0.3s ease;
+            border: 1px solid #1c1c1c;
+        }
+        .cta-btn-dark:hover { background-color: #3a3a3a; border-color: #3a3a3a; }
+        .cta-btn-outline-light {
+            background: transparent; color: #1c1c1c; border: 1px solid #1c1c1c; padding: 14px 32px;
+            border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .cta-btn-outline-light:hover { background: #1c1c1c; color: #fff; }
+
+
+        /* --- FOOTER --- */
+        #main-footer {
+            background-color: #222222; color: #b0b0b0; padding: 70px 40px 30px; font-family: 'Inter', sans-serif;
+        }
+        .footer-container {
+            display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap: 40px;
+            max-width: 1400px; margin: 0 auto; padding-bottom: 40px; border-bottom: 1px solid #3a3a3a;
+        }
+        .footer-logo { margin-bottom: 20px; }
+        .footer-logo img { height: 40px; width: 40px; background: #ffffff; border-radius: 6px; padding: 4px; object-fit: contain; }
+        .footer-desc { font-size: 0.95rem; line-height: 1.6; color: #a0a0a0; margin-bottom: 25px; max-width: 300px; }
+        .footer-col h4 { color: #ecebea; font-size: 1.1rem; font-weight: 700; margin-bottom: 25px; font-family: 'Anton', sans-serif; letter-spacing: 1px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-col ul li a { text-decoration: none; color: #a0a0a0; transition: color 0.3s ease; font-size: 0.95rem; }
+        .footer-col ul li a:hover { color: #46b284; }
+        .social-links { display: flex; gap: 12px; }
+        .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ecebea; font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none; }
+        .social-links a:hover { background: #46b284; color: #fff; transform: translateY(-3px); }
+        .contact-info li { display: flex; align-items: flex-start; gap: 15px; color: #a0a0a0; font-size: 0.95rem; line-height: 1.4; }
+        .contact-info li i { color: #46b284; margin-top: 3px; font-size: 1.1rem; }
+        .contact-info li a { color: #a0a0a0; text-decoration: none; }
+        .contact-info li a:hover { color: #46b284; }
+        .contact-info li span { color: #a0a0a0; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 20px auto 0; padding-top: 20px; flex-wrap: wrap; gap: 20px; }
+        .footer-bottom p { color: #777; font-size: 0.85rem; }
+        .footer-bottom-right { display: flex; gap: 30px; }
+        .footer-bottom-right a { color: #777; text-decoration: none; font-size: 0.85rem; transition: color 0.3s ease; }
+        .footer-bottom-right a:hover { color: #46b284; }
+
+        /* --- WhatsApp --- */
+        .whatsapp-icon {
+            position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px;
+            background-color: white; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: #1c1c1c; font-size: 1.8rem; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; z-index: 100;
+        }
+        .whatsapp-icon:hover { transform: scale(1.1); color: #25D366; }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 900px) {
+            .nav-container, .cta-btn { display: none !important; }
+            .hamburger { display: flex; }
+            header { flex-direction: row; padding: 15px 20px; }
+            #work-hero { padding: 140px 20px 60px; }
+            #main-footer { padding: 50px 20px 30px; }
+            .footer-container { grid-template-columns: repeat(2, 1fr); }
+            .footer-bottom { flex-direction: column-reverse; text-align: center; }
+            .masonry-grid { column-count: 3; }
+        }
+        @media (max-width: 700px) { .masonry-grid { column-count: 2; } }
+        @media (max-width: 600px) {
+            .mobile-menu { height: 85vh; padding: 40px 20px 100px; }
+            .mobile-nav-links li a { font-size: 1rem; }
+            .mobile-cta-btn { font-size: 0.9rem; padding: 10px 25px; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-desc { max-width: 100%; margin: 0 auto 25px; }
+            .social-links { justify-content: center; }
+            .contact-info li { justify-content: center; }
+            .footer-bottom-right { flex-direction: column; gap: 10px; }
+            .cta-buttons-row { flex-direction: column; align-items: center; }
+            .cta-btn-dark, .cta-btn-outline-light { width: 100%; justify-content: center; }
+        }
+        @media (max-width: 500px) { .masonry-grid { column-count: 1; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><img src="https://ui-avatars.com/api/?name=Z&background=fff&color=000&size=128" alt="Logo"></div>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="service.html">Services</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <a href="#" class="cta-btn">
+            <div class="eye-wrapper"><div class="eye" id="eyeContainer"><div class="pupil" id="pupil"></div></div></div>
+            LET'S TALK
+        </a>
+        <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="service.html">Services</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#" class="mobile-cta-btn">LET'S TALK</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="work-hero">
+        <div class="work-bg-word left-to-right" data-rot="-5deg">PORTFOLIO</div>
+        <div class="work-bg-word right-to-left" data-rot="4deg">SHOWCASE</div>
+        <div class="work-bg-word left-to-right" data-rot="-3deg">PORTFOLIO</div>
+        <div class="work-bg-word right-to-left" data-rot="6deg">SHOWCASE</div>
+
+        <div class="hero-content">
+            <div class="hero-subtitle"><i class="fas fa-play"></i> OUR WORK</div>
+            <h1 class="hero-heading">CREATIVE<br><span class="highlight-green">PORTFOLIO</span></h1>
+            <p class="hero-desc">A curated collection of our finest work. From brand films to motion graphics, each project tells a unique story.</p>
+        </div>
+    </section>
+
+    <!-- WORK & FILTER SECTION (WITHOUT LONG BOXES) -->
+    <section id="work-grid-section">
+        <div class="filter-bar">
+            <div class="filter-pills" id="filterPills">
+                <button class="filter-pill active" data-filter="all">All Work</button>
+                <button class="filter-pill" data-filter="branding">Branding</button>
+                <button class="filter-pill" data-filter="commercial">Commercial</button>
+                <button class="filter-pill" data-filter="motion">Motion</button>
+                <button class="filter-pill" data-filter="film">Film</button>
+            </div>
+        </div>
+        <div class="filter-line"></div>
+
+        <!-- SMALL TRANSPARENT GRID CARDS -->
+        <div class="masonry-grid" id="workGrid">
+            <!-- Commercial -->
+            <div class="grid-item" data-category="commercial">
+                <h4>Project Alpha</h4>
+                <p>Commercial Campaign</p>
+            </div>
+            <div class="grid-item" data-category="commercial">
+                <h4>Project Beta</h4>
+                <p>Product Launch Ad</p>
+            </div>
+            <!-- Branding -->
+            <div class="grid-item" data-category="branding">
+                <h4>Brand X</h4>
+                <p>Visual Identity</p>
+            </div>
+            <div class="grid-item" data-category="branding">
+                <h4>Brand Y</h4>
+                <p>Logo & Guidelines</p>
+            </div>
+            <!-- Motion -->
+            <div class="grid-item" data-category="motion">
+                <h4>Motion Graphics 1</h4>
+                <p>2D Animation</p>
+            </div>
+            <div class="grid-item" data-category="motion">
+                <h4>Motion Graphics 2</h4>
+                <p>3D Composition</p>
+            </div>
+            <!-- Film -->
+            <div class="grid-item" data-category="film">
+                <h4>Short Film</h4>
+                <p>Narrative Story</p>
+            </div>
+            <div class="grid-item" data-category="film">
+                <h4>Documentary</h4>
+                <p>Behind the Scenes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="cta-section">
+        <h2 class="cta-heading">
+            READY TO CREATE<br>
+            <span class="highlight-green">YOUR STORY?</span>
+        </h2>
+        <p class="cta-desc">
+            Let's collaborate on your next project. Whether it's a brand film, commercial, or motion graphics, we're here to bring your vision to life.
+        </p>
+        <div class="cta-buttons-row">
+            <a href="#" class="cta-btn-dark">
+                START A PROJECT <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+            </a>
+            <a href="contact.html" class="cta-btn-outline-light">
+                GET IN TOUCH <i class="fas fa-minus" style="font-size: 0.7rem;"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="footer-logo"><img src="https://ui-avatars.com/api/?name=Z&background=fff&color=000&size=128" alt="ZYNEX Logo"></div>
+                <p class="footer-desc">Creative production company specializing in innovative digital solutions, visual storytelling, and cutting-edge design experiences.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="work.html">Our Work</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Instagram Reels</a></li>
+                    <li><a href="#">Brand Videos</a></li>
+                    <li><a href="#">Social Media Content</a></li>
+                    <li><a href="#">Product Videos</a></li>
+                    <li><a href="#">Event Coverage</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h4>Get In Touch</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:zynexdesignz@gmail.com">zynexdesignz@gmail.com</a></li>
+                    <li><i class="fas fa-phone-alt"></i> <a href="tel:+917510173642">+91 7510173642</a></li>
+                    <li><i class="fas fa-location-dot"></i> <span>Kundara, Kollam<br>Kerala, India</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-left"><p>&copy; 2026  ZYNEX DESIGNZ. All rights reserved.</p></div>
+            <div class="footer-bottom-right">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/917510173642" class="whatsapp-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        // 1. Eye Ball Tracking
+        const eye = document.getElementById('eyeContainer');
+        const pupil = document.getElementById('pupil');
+        function moveEye(clientX, clientY) {
+            const rect = eye.getBoundingClientRect();
+            const eyeX = rect.left + rect.width / 2;
+            const eyeY = rect.top + rect.height / 2;
+            const angle = Math.atan2(clientY - eyeY, clientX - eyeX);
+            const maxDist = 6; 
+            const x = Math.cos(angle) * maxDist;
+            const y = Math.sin(angle) * maxDist;
+            pupil.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        }
+        document.addEventListener('mousemove', (e) => moveEye(e.clientX, e.clientY));
+        document.addEventListener('touchmove', (e) => { if(e.touches.length > 0) moveEye(e.touches[0].clientX, e.touches[0].clientY); });
+
+        // 2. Alternating Word Scroll Animation
+        const scrollSections = ['work-hero'];
+        function animateScrollingWords(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            const words = section.querySelectorAll('.work-bg-word');
+            const rect = section.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            let progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+            let adjustedProgress = Math.max(0, Math.min(1, progress));
+            words.forEach(word => {
+                let startX, endX;
+                const isLeftToRight = word.classList.contains('left-to-right');
+                const maxDist = 80; 
+                if (isLeftToRight) { startX = -maxDist; endX = maxDist; } 
+                else { startX = maxDist; endX = -maxDist; }
+                const currentX = startX + (endX - startX) * adjustedProgress;
+                const rot = word.dataset.rot || '0deg';
+                word.style.transform = `translateX(${currentX}vw) rotate(${rot})`;
+            });
+        }
+        window.addEventListener('scroll', () => { scrollSections.forEach(id => animateScrollingWords(id)); });
+
+        // 3. Filter Bar Functionality
+        const filterPills = document.querySelectorAll('.filter-pill');
+        const gridItems = document.querySelectorAll('.grid-item');
+
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', function() {
+                filterPills.forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+
+                gridItems.forEach(item => {
+                    if (filterValue === 'all') {
+                        item.classList.remove('hidden');
+                    } else {
+                        if (item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+
+        // 4. Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>

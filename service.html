@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - ZYNEX DESIGNZ Creative Production Studio</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1c1c1c;
+            color: #ecebea;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Background & Texture --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(46, 125, 50, 0.05) 0%, transparent 60%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 0, transparent 50%);
+            background-size: 100% 100%, 50px 50px;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* --- Navigation Header --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 40px;
+            background: rgba(28, 28, 28, 0.8);
+            backdrop-filter: blur(8px); z-index: 1000;
+            animation: slideDown 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-100%); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Logo --- */
+        .logo {
+            width: 42px; height: 42px; background: #ecebea;
+            border-radius: 6px; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* --- Nav --- */
+        .nav-container {
+            display: flex; align-items: center;
+            background: rgba(60, 60, 60, 0.4); backdrop-filter: blur(5px);
+            padding: 10px 25px; border-radius: 50px;
+            animation: navGlow 3s ease-in-out infinite;
+        }
+        @keyframes navGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(70, 178, 132, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(70, 178, 132, 0.4); }
+        }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links li { position: relative; }
+        .nav-links li a {
+            text-decoration: none; color: #d1d1d1;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1px; transition: color 0.3s ease; position: relative;
+        }
+        .nav-links li a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background-color: #46b284; transition: width 0.3s ease;
+        }
+        .nav-links li a:hover { color: #ecebea; }
+        .nav-links li a:hover::after { width: 100%; }
+
+        /* --- CTA Button with Eye --- */
+        .cta-btn {
+            background-color: #46b284; color: white;
+            padding: 6px 16px 6px 6px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 0.75rem;
+            display: flex; align-items: center; gap: 10px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .cta-btn:hover { background-color: #3a926a; transform: scale(1.05); }
+        .eye-wrapper {
+            width: 28px; height: 28px; background: #c4e6d6; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .eye { width: 20px; height: 20px; background: white; border-radius: 50%; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .pupil { width: 10px; height: 10px; background: #1c1c1c; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+        /* --- Custom Hamburger --- */
+        .hamburger { display: none; width: 28px; height: 20px; flex-direction: column; justify-content: space-between; cursor: pointer; z-index: 1001; position: relative; }
+        .hamburger span { display: block; width: 100%; height: 2.5px; background-color: #ecebea; border-radius: 2px; transition: all 0.3s ease-in-out; transform-origin: center; }
+        .hamburger.active span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+        /* --- Mobile Bottom Sheet --- */
+        .menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1999; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+        .menu-overlay.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu { position: fixed; bottom: 0; left: 0; width: 100%; height: 70vh; background: rgba(28, 28, 28, 0.98); backdrop-filter: blur(15px); border-top-left-radius: 25px; border-top-right-radius: 25px; z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); padding: 40px 20px 80px; }
+        .mobile-menu.active { transform: translateY(0); }
+        .mobile-nav-links { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .mobile-nav-links li a { text-decoration: none; color: #ecebea; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s ease; }
+        .mobile-nav-links li a:hover { color: #46b284; }
+        .mobile-cta-btn { background-color: #46b284; color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; margin-top: 10px; transition: transform 0.2s ease, background 0.3s ease; }
+        .mobile-cta-btn:hover { background-color: #3a926a; transform: scale(1.05); }
+
+
+        /* --- SERVICE PAGE --- */
+        #services-page {
+            min-height: 100vh;
+            background-color: #1c1c1c;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 160px;
+            padding-bottom: 60px;
+        }
+
+        .services-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .services-hero .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            color: #46b284;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .services-hero h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(4.5rem, 12vw, 7rem);
+            color: #ecebea;
+            margin: 10px 0 20px;
+            letter-spacing: 2px;
+            line-height: 0.9;
+        }
+        .services-hero p {
+            max-width: 750px;
+            margin: 0 auto;
+            color: #a0a0a0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 300;
+            padding: 0 20px;
+        }
+
+        /* --- Services Cards Grid --- */
+        .services-grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            background: #242424;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: left;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-6px);
+            background: #2a2a2a;
+            border-color: #9b6b43;
+            box-shadow: 0 0 15px rgba(155, 107, 67, 0.3);
+        }
+
+        .service-card .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+
+        .service-card:nth-child(1) .icon-box { background: rgba(142, 68, 173, 0.2); color: #b07dd4; }
+        .service-card:nth-child(2) .icon-box { background: rgba(142, 68, 173, 0.2); color: #b07dd4; }
+        .service-card:nth-child(3) .icon-box { background: rgba(241, 196, 15, 0.2); color: #f7dc6f; }
+        .service-card:nth-child(4) .icon-box { background: rgba(52, 152, 219, 0.2); color: #85c1e9; }
+        .service-card:nth-child(5) .icon-box { background: rgba(155, 89, 182, 0.2); color: #bb8fce; }
+        .service-card:nth-child(6) .icon-box { background: rgba(231, 76, 60, 0.2); color: #f1948a; }
+
+        .service-card h3 {
+            font-family: 'Anton', sans-serif;
+            color: #ecebea;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .service-card .subtitle-sm {
+            color: #46b284;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .service-card .desc {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+        .service-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .service-card ul li {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .service-card ul li::before {
+            content: "—";
+            color: #46b284;
+            font-weight: 400;
+        }
+
+        /* --- CTA & CONTACT SECTION --- */
+        #cta-contact-section {
+            background-color: #1c1c1c;
+            padding: 80px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-box {
+            background-color: #1e2f2a;
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        .cta-box h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #ecebea;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        .cta-box p {
+            color: #b0b0b0;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .cta-btn-solid {
+            background-color: #46b284;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            border: 1px solid #46b284;
+        }
+        .cta-btn-solid:hover { background-color: #3a926a; }
+        .cta-btn-outline {
+            background: transparent;
+            color: #46b284;
+            border: 1px solid #46b284;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .cta-btn-outline:hover {
+            background: #46b284;
+            color: #fff;
+        }
+
+        /* Contact Details below CTA */
+        .cta-contact-details {
+            margin-top: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .cta-contact-details a {
+            color: #ecebea;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        .cta-contact-details a:hover { color: #46b284; }
+        .cta-contact-details span {
+            display: inline-block;
+            margin: 0 8px;
+            color: #555;
+        }
+
+
+        /* --- FOOTER --- */
+        #main-footer {
+            background-color: #222222;
+            color: #b0b0b0;
+            padding: 70px 40px 30px;
+            font-family: 'Inter', sans-serif;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        .footer-logo { margin-bottom: 20px; }
+        .footer-logo img {
+            height: 40px; width: 40px; background: #ffffff;
+            border-radius: 6px; padding: 4px; object-fit: contain;
+        }
+        .footer-desc {
+            font-size: 0.95rem; line-height: 1.6; color: #a0a0a0;
+            margin-bottom: 25px; max-width: 300px;
+        }
+        .footer-col h4 {
+            color: #ecebea; font-size: 1.1rem; font-weight: 700;
+            margin-bottom: 25px; font-family: 'Anton', sans-serif; letter-spacing: 1px;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-col ul li a {
+            text-decoration: none; color: #a0a0a0; transition: color 0.3s ease; font-size: 0.95rem;
+        }
+        .footer-col ul li a:hover { color: #46b284; }
+        .social-links { display: flex; gap: 12px; }
+        .social-links a {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.08);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #ecebea; font-size: 1.2rem; transition: all 0.3s ease; text-decoration: none;
+        }
+        .social-links a:hover { background: #46b284; color: #fff; transform: translateY(-3px); }
+        .contact-info li {
+            display: flex; align-items: flex-start; gap: 15px; color: #a0a0a0; font-size: 0.95rem; line-height: 1.4;
+        }
+        .contact-info li i { color: #46b284; margin-top: 3px; font-size: 1.1rem; }
+        .contact-info li a { color: #a0a0a0; text-decoration: none; }
+        .contact-info li a:hover { color: #46b284; }
+        .contact-info li span { color: #a0a0a0; }
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1400px; margin: 20px auto 0; padding-top: 20px; flex-wrap: wrap; gap: 20px;
+        }
+        .footer-bottom p { color: #777; font-size: 0.85rem; }
+        .footer-bottom-right { display: flex; gap: 30px; }
+        .footer-bottom-right a {
+            color: #777; text-decoration: none; font-size: 0.85rem; transition: color 0.3s ease;
+        }
+        .footer-bottom-right a:hover { color: #46b284; }
+
+        /* --- WhatsApp --- */
+        .whatsapp-icon {
+            position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px;
+            background-color: white; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: #1c1c1c; font-size: 1.8rem; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: transform 0.3s ease; z-index: 100;
+        }
+        .whatsapp-icon:hover { transform: scale(1.1); color: #25D366; }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 900px) {
+            .nav-container, .cta-btn { display: none !important; }
+            .hamburger { display: flex; }
+            header { flex-direction: row; padding: 15px 20px; }
+            #services-page { padding-top: 120px; padding-bottom: 40px; }
+            .services-grid-container { grid-template-columns: repeat(2, 1fr); }
+            .footer-container { grid-template-columns: repeat(2, 1fr); }
+            .footer-bottom { flex-direction: column-reverse; text-align: center; }
+        }
+        
+        @media (max-width: 600px) {
+            .services-grid-container { grid-template-columns: 1fr; }
+            .mobile-menu { height: 85vh; padding: 40px 20px 100px; }
+            .mobile-nav-links li a { font-size: 1rem; }
+            .mobile-cta-btn { font-size: 0.9rem; padding: 10px 25px; }
+            
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-desc { max-width: 100%; margin: 0 auto 25px; }
+            .social-links { justify-content: center; }
+            .contact-info li { justify-content: center; }
+            .footer-bottom-right { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="https://ui-avatars.com/api/?name=ZY&background=fff&color=000&size=128" alt="Logo">
+        </div>
+
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Services</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <a href="#" class="cta-btn">
+            <div class="eye-wrapper">
+                <div class="eye" id="eyeContainer">
+                    <div class="pupil" id="pupil"></div>
+                </div>
+            </div>
+            LET'S TALK
+        </a>
+
+        <div class="hamburger" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Services</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="mobile-cta-btn">LET'S TALK</a>
+    </div>
+
+    <!-- SERVICE PAGE CONTENT -->
+    <section id="services-page">
+        <div class="services-hero">
+            <div class="subtitle">WHAT WE DO</div>
+            <h1>Our Services</h1>
+            <p>From concept to creation, we craft video content that captures attention, tells your story, and drives real results on social media.</p>
+        </div>
+
+        <div class="services-grid-container">
+            <!-- CARD 1 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-film"></i></div>
+                <h3>Instagram Reels</h3>
+                <span class="subtitle-sm">Short-Form Video Ads</span>
+                <p class="desc">High-impact vertical video content designed to stop the scroll and drive engagement on Instagram.</p>
+                <ul>
+                    <li>15–60 second reels</li>
+                    <li>Trending audio integration</li>
+                    <li>Hook-driven storytelling</li>
+                    <li>Platform-optimized editing</li>
+                </ul>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-clapperboard"></i></div>
+                <h3>Brand Videos</h3>
+                <span class="subtitle-sm">Visual Identity</span>
+                <p class="desc">Compelling brand stories that communicate your values and connect with your audience emotionally.</p>
+                <ul>
+                    <li>Brand storytelling</li>
+                    <li>Product showcases</li>
+                    <li>Company culture videos</li>
+                    <li>Mission & vision content</li>
+                </ul>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-mobile-screen-button"></i></div>
+                <h3>Social Media Content</h3>
+                <span class="subtitle-sm">Multi-Platform Strategy</span>
+                <p class="desc">Scroll-stopping content tailored for Instagram, Facebook, YouTube Shorts, and other platforms.</p>
+                <ul>
+                    <li>Platform-specific formats</li>
+                    <li>Content calendars</li>
+                    <li>Engagement-focused</li>
+                    <li>Consistent brand voice</li>
+                </ul>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-bag-shopping"></i></div>
+                <h3>Product Videos</h3>
+                <span class="subtitle-sm">E-Commerce & Retail</span>
+                <p class="desc">Dynamic product demonstrations that showcase features, benefits, and drive purchase decisions.</p>
+                <ul>
+                    <li>Product demos</li>
+                    <li>Unboxing videos</li>
+                    <li>Feature highlights</li>
+                    <li>Lifestyle integration</li>
+                </ul>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-video"></i></div>
+                <h3>Event Coverage</h3>
+                <span class="subtitle-sm">Capture The Moment</span>
+                <p class="desc">Professional event documentation that preserves memories and creates shareable highlight content.</p>
+                <ul>
+                    <li>Live event filming</li>
+                    <li>Highlight reels</li>
+                    <li>Behind-the-scenes</li>
+                    <li>Social media cuts</li>
+                </ul>
+            </div>
+
+            <!-- CARD 6 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fas fa-chart-simple"></i></div>
+                <h3>Content Strategy</h3>
+                <span class="subtitle-sm">Planning & Consulting</span>
+                <p class="desc">Strategic guidance to help you plan, create, and distribute video content that achieves your goals.</p>
+                <ul>
+                    <li>Content planning</li>
+                    <li>Audience analysis</li>
+                    <li>Platform strategy</li>
+                    <li>Performance tracking</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & CONTACT SECTION -->
+    <section id="cta-contact-section">
+        <div class="cta-box">
+            <h2>Ready to Create Something Amazing?</h2>
+            <p>Let's discuss your project and bring your vision to life with compelling video content.</p>
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn-solid">Start a Project</a>
+                <a href="#" class="cta-btn-outline">Call Us</a>
+            </div>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="cta-contact-details">
+            <a href="mailto:zynexdesignz@gmail.com">zynexdesignz@gmail.com</a>
+            <a href="tel:+917510173642">+91 7510173642</a>
+        </div>
+    </section>
+
+    <!-- FOOTER (UPDATED WITH NEW CONTACT INFO) -->
+    <footer id="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="footer-logo">
+                    <img src="https://ui-avatars.com/api/?name=ZY&background=fff&color=000&size=128" alt="ZYNEX Logo">
+                </div>
+                <p class="footer-desc">
+                    Creative production company specializing in innovative digital solutions, visual storytelling, and cutting-edge design experiences.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="work.html">Our Work</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Instagram Reels</a></li>
+                    <li><a href="#">Brand Videos</a></li>
+                    <li><a href="#">Social Media Content</a></li>
+                    <li><a href="#">Product Videos</a></li>
+                    <li><a href="#">Event Coverage</a></li>
+                </ul>
+            </div>
+
+            <!-- UPDATED GET IN TOUCH COLUMN -->
+            <div class="footer-col contact-col">
+                <h4>Get In Touch</h4>
+                <ul class="contact-info">
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:zynexdesignz@gmail.com">zynexdesignz@gmail.com</a></li>
+                    <li><i class="fas fa-phone-alt"></i> <a href="tel:+917510173642">+91 7510173642</a></li>
+                    <li><i class="fas fa-location-dot"></i> <span>Kundara, Kollam<br>Kerala, India</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-left">
+                <p>&copy; 2026  ZYNEX DESIGNZ. All rights reserved.</p>
+            </div>
+            <div class="footer-bottom-right">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="#" class="whatsapp-icon">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        const eye = document.getElementById('eyeContainer');
+        const pupil = document.getElementById('pupil');
+        function moveEye(clientX, clientY) {
+            const rect = eye.getBoundingClientRect();
+            const eyeX = rect.left + rect.width / 2;
+            const eyeY = rect.top + rect.height / 2;
+            const angle = Math.atan2(clientY - eyeY, clientX - eyeX);
+            const maxDist = 6; 
+            const x = Math.cos(angle) * maxDist;
+            const y = Math.sin(angle) * maxDist;
+            pupil.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        }
+        document.addEventListener('mousemove', (e) => moveEye(e.clientX, e.clientY));
+        document.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) moveEye(e.touches[0].clientX, e.touches[0].clientY);
+        });
+
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
